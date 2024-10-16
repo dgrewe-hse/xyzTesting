@@ -16,11 +16,11 @@ More information in each of the actual code examples within the subdirectories.
 
 The following table provides an overview of the implementations in each language, the operations supported, and the unit testing libraries used.
 
-| Language  | Source Directory     | Supported Operations                            | Unit Testing Library                                          |
-|-----------|----------------------|-------------------------------------------------|---------------------------------------------------------------|
-| Java      | `/CalculatorJava/`   | Addition, Subtraction, Multiplication, Division | [JUnit 5](https://junit.org/junit5/)                          |
-| Python    | `/CalculatorPython/` | Addition, Subtraction, Multiplication, Division | [unittest](https://docs.python.org/3/library/unittest.html)   |
-| C         | `/CalculatorC/`      | Addition, Subtraction, Multiplication, Division | [CUnit](http://cunit.sourceforge.net/)                        |
+| Language  | Source Directory     | Supported Tests               | Unit Testing Library                                                         |
+|-----------|----------------------|-------------------------------|------------------------------------------------------------------------------|
+| Java      | `/CalculatorJava/`   | Unit tests (incl. Mock Tests) | [JUnit 5](https://junit.org/junit5/) | [Mockito](https://site.mockito.org/)  |
+| Python    | `/CalculatorPython/` | Unit tests (excl. Mock Tests) | [unittest](https://docs.python.org/3/library/unittest.html)                  |
+| C         | `/CalculatorC/`      | Unit tests (excl. Mock Tests) | [CUnit](http://cunit.sourceforge.net/)                                       |
 
 ### Java (JUnit 5)
 
