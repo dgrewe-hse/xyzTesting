@@ -15,8 +15,6 @@ package de.hse.swt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import de.hse.swt.logging.LoggingService;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -25,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
     private Calculator calculator;
-    private LoggingService loggingService;
 
     @BeforeEach
     public void setUp() {
