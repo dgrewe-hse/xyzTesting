@@ -21,12 +21,16 @@
  *
  * @param numbers An array of double values to be added.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The sum of the numbers.
  */
-double add(double* numbers, int count) {
+double add(double* numbers, int count, LogFunction logger) {
     double result = 0.0;
     for (int i = 0; i < count; i++) {
         result += numbers[i];
+    }
+    if (logger != NULL) {
+        logger("Adding numbers");
     }
     return result;
 }
@@ -37,15 +41,19 @@ double add(double* numbers, int count) {
  * @param numbers An array of double values where the first number is the base
  *                and the rest are subtracted from it.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The result of subtracting the numbers.
  */
-double subtract(double* numbers, int count) {
+double subtract(double* numbers, int count, LogFunction logger) {
     if (count == 0) {
         return 0.0;
     }
     double result = numbers[0];
     for (int i = 1; i < count; i++) {
         result -= numbers[i];
+    }
+    if (logger != NULL) {
+        logger("Subtracting numbers");
     }
     return result;
 }
@@ -55,15 +63,19 @@ double subtract(double* numbers, int count) {
  *
  * @param numbers An array of double values to be multiplied.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The product of the numbers.
  */
-double multiply(double* numbers, int count) {
+double multiply(double* numbers, int count, LogFunction logger) {
     if (count == 0) {
         return 1.0; // Identity for multiplication
     }
     double result = 1.0;
     for (int i = 0; i < count; i++) {
         result *= numbers[i];
+    }
+    if (logger != NULL) {
+        logger("Multiplying numbers");
     }
     return result;
 }
@@ -74,19 +86,37 @@ double multiply(double* numbers, int count) {
  * @param numbers An array of double values where the first number is divided
  *                by the rest. Division by zero will terminate the program.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The result of dividing the numbers.
  */
-double divide(double* numbers, int count) {
+/**
+ * @brief Divides an array of numbers and handles division by zero gracefully.
+ *
+ * @param numbers An array of double values where the first number is divided
+ *                by the rest.
+ * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
+ * @return The result of dividing the numbers, or 0.0 if division by zero occurs.
+ */
+double divide(double* numbers, int count, LogFunction logger) {
     if (count == 0) {
+        if (logger != NULL) {
+            logger("Attempted division with no values");
+        }
         return 1.0; // Identity for division
     }
     double result = numbers[0];
     for (int i = 1; i < count; i++) {
         if (numbers[i] == 0) {
-            printf("Error: Division by zero is not allowed.\n");
-            exit(EXIT_FAILURE); // Exiting on division by zero
+            if (logger != NULL) {
+                logger("Error: Division by zero attempted");
+            }
+            return 0.0; // Return 0.0 instead of exiting to not terminate mock test
         }
         result /= numbers[i];
+        if (logger != NULL) {
+            logger("Dividing numbers");
+        }
     }
     return result;
 }

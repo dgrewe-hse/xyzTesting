@@ -16,13 +16,20 @@
 #define CALCULATOR_H
 
 /**
+ * @brief A function pointer for logging messages.
+ * If logging is not needed, this can be NULL.
+ */
+typedef void (*LogFunction)(const char* message);
+
+/**
  * @brief Adds an array of numbers.
  *
  * @param numbers An array of double values to be added.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The sum of the numbers.
  */
-double add(double* numbers, int count);
+double add(double* numbers, int count, LogFunction logger);
 
 /**
  * @brief Subtracts an array of numbers.
@@ -30,18 +37,20 @@ double add(double* numbers, int count);
  * @param numbers An array of double values where the first number is the base
  *                and the rest are subtracted from it.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The result of subtracting the numbers.
  */
-double subtract(double* numbers, int count);
+double subtract(double* numbers, int count, LogFunction logger);
 
 /**
  * @brief Multiplies an array of numbers.
  *
  * @param numbers An array of double values to be multiplied.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The product of the numbers.
  */
-double multiply(double* numbers, int count);
+double multiply(double* numbers, int count, LogFunction logger);
 
 /**
  * @brief Divides an array of numbers.
@@ -49,8 +58,9 @@ double multiply(double* numbers, int count);
  * @param numbers An array of double values where the first number is divided
  *                by the rest. Division by zero will terminate the program.
  * @param count The number of elements in the array.
+ * @param logger A logging function pointer (can be NULL for no logging)
  * @return The result of dividing the numbers.
  */
-double divide(double* numbers, int count);
+double divide(double* numbers, int count, LogFunction logger);
 
 #endif // CALCULATOR_H

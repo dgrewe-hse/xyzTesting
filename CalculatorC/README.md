@@ -13,15 +13,17 @@ This project implements a simple **Calculator** in C that performs basic arithme
 
 ## Project Structure
 
-    CalculatorProject/
-    ├── Makefile               # Automates compilation and testing
-    ├── README.md              # Project documentation
-    ├── src/                   # Source files
-    │   ├── calculator.c       # Calculator implementation
-    │   └── calculator.h       # Calculator header file
-    ├── tests/                 # Test files
-    │   └── test_calculator.c  # Unit tests for the calculator
-    └── build/                 # Directory for compiled binaries
+  CalculatorProject/
+  ├── src/
+  │   ├── calculator.c               # Calculator implementation with logging
+  │   ├── calculator.h               # Calculator header file
+  │   ├── logging_service.c          # Real logging service implementation (optional)
+  │   └── logging_service.h          # Logging service header
+  ├── tests/
+  │   ├── test_calculator.c          # Regular unit tests (no mocking)
+  │   └── test_calculator_mock.c     # Mock tests with mocked logging
+  ├── Makefile                       # Build and test configuration
+  └── README.md                      # Project explanation (this file)
 
 ## Prerequisites
 
@@ -75,8 +77,24 @@ After building the project, you can run the unit tests using:
 
   Run Summary:    Type  Total    Ran Passed Failed Inactive
                 suites      1      1    n/a      0        0
-                tests      4      4      4      0        0
-              asserts     12     12     12      0      n/a
+                 tests      4      4      4      0        0
+               asserts     12     12     12      0      n/a
+
+  Elapsed time =    0.000 seconds
+
+  Running mock tests...
+  ./build/calculator_mock_test
+
+
+      CUnit - A unit testing framework for C - Version 2.1-3
+      http://cunit.sourceforge.net/
+
+
+
+  Run Summary:    Type  Total    Ran Passed Failed Inactive
+                suites      1      1    n/a      0        0
+                 tests      5      5      5      0        0
+               asserts      5      5      5      0      n/a
 
   Elapsed time =    0.000 seconds
   ```

@@ -38,17 +38,17 @@ double* create_array(int size, double values[]) {
 void test_add() {
     double values[] = {1.0, 2.0, 3.0};
     double* numbers = create_array(3, values);
-    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 3), 6.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 3, NULL), 6.0, 0.0001);
     free(numbers);  // Free allocated memory
 
     double single[] = {5.0};
     numbers = create_array(1, single);
-    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 1), 5.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 1, NULL), 5.0, 0.0001);
     free(numbers);
 
     double empty[] = {};
     numbers = create_array(0, empty);
-    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 0), 0.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(add(numbers, 0, NULL), 0.0, 0.0001);
     free(numbers);
 }
 
@@ -58,17 +58,17 @@ void test_add() {
 void test_subtract() {
     double values[] = {10.0, 3.0, 2.0};
     double* numbers = create_array(3, values);
-    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 3), 5.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 3, NULL), 5.0, 0.0001);
     free(numbers);
 
     double single[] = {5.0};
     numbers = create_array(1, single);
-    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 1), 5.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 1, NULL), 5.0, 0.0001);
     free(numbers);
 
     double empty[] = {};
     numbers = create_array(0, empty);
-    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 0), 0.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(subtract(numbers, 0, NULL), 0.0, 0.0001);
     free(numbers);
 }
 
@@ -78,17 +78,17 @@ void test_subtract() {
 void test_multiply() {
     double values[] = {2.0, 3.0, 4.0};
     double* numbers = create_array(3, values);
-    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 3), 24.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 3, NULL), 24.0, 0.0001);
     free(numbers);
 
     double single[] = {5.0};
     numbers = create_array(1, single);
-    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 1), 5.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 1, NULL), 5.0, 0.0001);
     free(numbers);
 
     double empty[] = {};
     numbers = create_array(0, empty);
-    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 0), 1.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(multiply(numbers, 0, NULL), 1.0, 0.0001);
     free(numbers);
 }
 
@@ -98,17 +98,17 @@ void test_multiply() {
 void test_divide() {
     double values[] = {100.0, 5.0, 2.0};
     double* numbers = create_array(3, values);
-    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 3), 10.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 3, NULL), 10.0, 0.0001);
     free(numbers);
 
     double single[] = {5.0};
     numbers = create_array(1, single);
-    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 1), 5.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 1, NULL), 5.0, 0.0001);
     free(numbers);
 
     double empty[] = {};
     numbers = create_array(0, empty);
-    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 0), 1.0, 0.0001);
+    CU_ASSERT_DOUBLE_EQUAL(divide(numbers, 0, NULL), 1.0, 0.0001);
     free(numbers);
 }
 
