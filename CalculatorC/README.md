@@ -13,17 +13,17 @@ This project implements a simple **Calculator** in C that performs basic arithme
 
 ## Project Structure
 
-  CalculatorProject/
-  ├── src/
-  │   ├── calculator.c               # Calculator implementation with logging
-  │   ├── calculator.h               # Calculator header file
-  │   ├── logging_service.c          # Real logging service implementation (optional)
-  │   └── logging_service.h          # Logging service header
-  ├── tests/
-  │   ├── test_calculator.c          # Regular unit tests (no mocking)
-  │   └── test_calculator_mock.c     # Mock tests with mocked logging
-  ├── Makefile                       # Build and test configuration
-  └── README.md                      # Project explanation (this file)
+    CalculatorProject/
+    ├── src/
+    │   ├── calculator.c               # Calculator implementation with logging
+    │   ├── calculator.h               # Calculator header file
+    │   ├── logging_service.c          # Real logging service implementation (optional)
+    │   └── logging_service.h          # Logging service header
+    ├── tests/
+    │   ├── test_calculator.c          # Regular unit tests (no mocking)
+    │   └── test_calculator_mock.c     # Mock tests with mocked logging
+    ├── Makefile                       # Build and test configuration
+    └── README.md                      # Project explanation (this file)
 
 ## Prerequisites
 
