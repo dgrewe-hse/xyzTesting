@@ -29,5 +29,6 @@ replay_pid*
 # directories
 **/target
 **/venv
+**/build
 **/__pycache__
 **/.pytest_cache
