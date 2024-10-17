@@ -63,17 +63,31 @@ void test_divide_by_zero_with_mock_log() {
 }
 
 int main() {
-    CU_initialize_registry();
+    // Initialize CUnit test registry
+    if (CUE_SUCCESS != CU_initialize_registry()) {
+        return CU_get_error();
+    }
     
-    CU_pSuite suite = CU_add_suite("CalculatorMockTestSuite", 0, 0);
-    CU_add_test(suite, "test_add_with_mock_log", test_add_with_mock_log);
-    CU_add_test(suite, "test_subtract_with_mock_log", test_subtract_with_mock_log);
-    CU_add_test(suite, "test_multiply_with_mock_log", test_multiply_with_mock_log);
-    CU_add_test(suite, "test_divide_with_mock_log", test_divide_with_mock_log);
-    CU_add_test(suite, "test_divide_by_zero_with_mock_log", test_divide_by_zero_with_mock_log);
-    
+    // Add test suite
+    CU_pSuite pSuite = CU_add_suite("CalculatorMockTestSuite", 0, 0);
+
+    // Add tests to suite
+    if (NULL == pSuite ||
+        (NULL == CU_add_test(pSuite, "test_add_with_mock_log", test_add_with_mock_log)) ||
+        (NULL == CU_add_test(pSuite, "test_subtract_with_mock_log", test_subtract_with_mock_log)) ||
+        (NULL == CU_add_test(pSuite, "test_multiply_with_mock_log", test_multiply_with_mock_log)) ||
+        (NULL == CU_add_test(pSuite, "test_divide_with_mock_log", test_divide_with_mock_log)) ||
+        (NULL == CU_add_test(pSuite, "test_divide_by_zero_with_mock_log", test_divide_by_zero_with_mock_log))) {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+
+    // Run tests using the basic interface
+    CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
-    CU_cleanup_registry();
     
-    return 0;
+    // Clean up the registry and return
+    CU_cleanup_registry();
+
+    return CU_get_error();
 }
