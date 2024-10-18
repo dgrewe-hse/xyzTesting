@@ -21,11 +21,25 @@ package de.hse.swt.logging;
 public class ConsoleLoggingService implements LoggingService {
 
     /**
+     * Counter to track the number of logged messages.
+     */
+    private int logCount = 0;
+
+    /**
      * Logs a message to the console.
      * @param message the message to log
      */
     @Override
     public void log(String message) {
         System.out.println("LOG: " + message);
+        logCount++;
+    }
+
+    /**
+     * Returns the number of messages logged since the service was created.
+     * @return the number of logged messages
+     */
+    public int getLogCount() {
+        return logCount;
     }
 }

@@ -24,4 +24,10 @@ public interface LoggingService {
      * @param message the message to log
      */
     void log(String message);
+
+    /**
+     * Returns the number of messages logged since the service was created.
+     * @return the number of logged messages
+     */
+    int getLogCount();
 }
