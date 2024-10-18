@@ -33,6 +33,7 @@ The following table provides an overview of the implementations in each language
 | Java      | `/CalculatorJava/`   | Unit tests (incl. Mock Tests) | [JUnit 5](https://junit.org/junit5/) | [Mockito](https://site.mockito.org/)  |
 | Python    | `/CalculatorPython/` | Unit tests (excl. Mock Tests) | [unittest](https://docs.python.org/3/library/unittest.html)                  |
 | C         | `/CalculatorC/`      | Unit tests (incl. Mock Tests) | [CUnit](http://cunit.sourceforge.net/)                                       |
+| C++       | `/CalculatorCpp/`    | Unit tests (incl. Mock Tests) | [GoogleTest](https://google.github.io/googletest/)                           |
 
 ## Abstract: Calculator with Logger - Highlighting the Use Case
 
@@ -70,6 +71,13 @@ The C implementation is located in the `/CalculatorC/` directory. It uses **CUni
 
 - **Source Files**: `calculator.c`, `calculator.h`, `test_calculator.c`
 - **Unit Tests**: Implemented using [CUnit](http://cunit.sourceforge.net/).
+
+### C++ (GoogleTest)
+
+The C++ implementation is located in the `/CalculatorCpp/` directory. It uses **GoogleTest** for unit testing. The calculator operates on arrays of numbers and provides the same basic arithmetic operations.
+
+- **Source Files**: `calculator.cpp`, `calculator.h`, `test_calculator.cpp`
+- **Unit Tests**: Implemented using [GoogleTest](https://google.github.io/googletest/).
 
 # Contact
 
