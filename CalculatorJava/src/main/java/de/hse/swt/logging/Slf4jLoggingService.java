@@ -23,15 +23,15 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A logging service implementation using SLF4J.
- * 
+ *
  * This class provides a concrete implementation of the LoggingService interface
  * using SLF4J (Simple Logging Facade for Java) as the underlying logging framework.
  * It uses the SLF4J Logger to log messages at the INFO level.
- * 
+ *
  * Usage:
  * LoggingService logger = new Slf4jLoggingService();
  * logger.log("This is a log message");
- * 
+ *
  * @see LoggingService
  * @see org.slf4j.Logger
  */

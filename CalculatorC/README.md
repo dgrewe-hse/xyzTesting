@@ -28,7 +28,7 @@ This project implements a simple **Calculator** in C that performs basic arithme
 ## Prerequisites
 
 - **C Compiler**: Ensure you have a C compiler installed. You can use GCC, Clang, or any compatible C compiler.
-  
+
   To verify the installation of GCC, run:
 
   ```bash

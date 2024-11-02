@@ -24,7 +24,7 @@ Before building and running the tests, make sure you have the following installe
 
 - **CMake**: Version 3.10 or later.
 - **Google Test and Google Mock**: These are required to run the unit and mock tests.
-  
+
 ### Installing Google Test and Google Mock
 
 #### On Ubuntu:

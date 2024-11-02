@@ -73,7 +73,7 @@ void test_divide_by_zero_with_mock_log() {
     log_message_buffer[0] = '\0';  // Clear buffer before the test
     double numbers[] = {100.0, 0.0};
     double result = divide(numbers, 2, mock_log_message);
-    
+
     CU_ASSERT_DOUBLE_EQUAL(result, 0.0, 0.0001);  // Check result is 0.0
     CU_ASSERT_STRING_EQUAL(log_message_buffer, "Error: Division by zero attempted");
 }
