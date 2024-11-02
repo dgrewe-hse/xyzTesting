@@ -50,5 +50,3 @@ $ pytest # in the root directory of the project
     │   └── test_calculator.py
     ├── setup.py
     ├── README.md
-
-

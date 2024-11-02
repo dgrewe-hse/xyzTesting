@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Integration tests for the Calculator class to verify logging behavior.
- * 
+ *
  * This test class uses the ConsoleLoggingService to capture and assert log counts
  * generated during arithmetic operations.
  */

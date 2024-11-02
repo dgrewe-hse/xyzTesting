@@ -1,6 +1,6 @@
-# xyzTesting 
+# xyzTesting
 
-This repository contains implementations of a simple **Calculator** applications in different programming languages as part of the Software Testing module (SWB 105 6043) at Esslingen University of Applied Sciences. It provides examples of different kinds of test implementations including unit testing, integration testing and more in different programming languages. Dependent of the programming languages you want to 
+This repository contains implementations of a simple **Calculator** applications in different programming languages as part of the Software Testing module (SWB 105 6043) at Esslingen University of Applied Sciences. It provides examples of different kinds of test implementations including unit testing, integration testing and more in different programming languages. Dependent of the programming languages you want to
 investigate, you might need to install and setup dependencies in your system.
 More information in each of the actual code examples within the subdirectories.
 

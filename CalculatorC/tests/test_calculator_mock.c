@@ -67,7 +67,7 @@ int main() {
     if (CUE_SUCCESS != CU_initialize_registry()) {
         return CU_get_error();
     }
-    
+
     // Add test suite
     CU_pSuite pSuite = CU_add_suite("CalculatorMockTestSuite", 0, 0);
 
@@ -85,7 +85,7 @@ int main() {
     // Run tests using the basic interface
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
-    
+
     // Clean up the registry and return
     CU_cleanup_registry();
 
