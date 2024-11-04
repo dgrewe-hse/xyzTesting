@@ -24,7 +24,12 @@ setup(
     # Include the dependencies required for your project
     python_requires=">=3.6",  # Specify your minimum Python version
     install_requires=[
-        "pytest==7.2.2",  # Add pytest for testing
+        "pytest==8.3.3",  # Updated pytest version
+        "pydantic==1.8.2",  # Added pydantic
+        "pytest-cov==5.0.0",  # Added pytest-cov
+        "python-dotenv==0.19.0",  # Added python-dotenv
+        "flake8>=6.0.0",  # Updated flake8 version
+        "behave==1.2.6",  # Added behave
     ],
     # For running tests using pytest, nose2, and additional nose plugins
     test_suite="tests",
