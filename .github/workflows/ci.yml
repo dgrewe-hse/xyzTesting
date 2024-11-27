@@ -66,7 +66,7 @@ jobs:
           cd /usr/src/gtest
           sudo cmake .
           sudo make
-          sudo cp *.a /usr/lib  # Copy the Google Test libraries to /usr/lib
+          sudo cp lib/libgtest*.a /usr/lib  # Copy the Google Test libraries to /usr/lib
       - name: Create build directory
         run: |
           cd CalculatorCpp
