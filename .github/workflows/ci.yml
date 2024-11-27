@@ -53,23 +53,28 @@ jobs:
           make test  # Use the Makefile to run the tests
 
   cpp:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-        - name: Install dependencies
-          run: sudo apt-get install -y cmake libgtest-dev g++
-        - name: Create build directory
-          run: |
-            cd CalculatorCpp
-            mkdir build  # Create a build directory
-            cd build
-            cmake ..  # Run CMake to configure the project
-        - name: Build the project
-          run: |
-            cd CalculatorCpp/build
-            make  # Build the project
-        - name: Run tests
-          run: |
-            cd CalculatorCpp/build
-            ctest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libgtest-dev  # Install CMake, g++, and Google Test
+          cd /usr/src/gtest
+          sudo cmake .
+          sudo cp *.a /usr/lib  # Copy the Google Test libraries to /usr/lib
+      - name: Create build directory
+        run: |
+          cd CalculatorCpp
+          mkdir build  # Create a build directory
+          cd build
+          cmake ..  # Run CMake to configure the project
+      - name: Build the project
+        run: |
+          cd CalculatorCpp/build
+          make  # Build the project
+      - name: Run tests
+        run: |
+          cd CalculatorCpp/build
+          ctest
