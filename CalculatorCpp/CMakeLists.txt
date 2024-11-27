@@ -34,6 +34,7 @@ include_directories(include)
 # Find and link Google Test (GTest) libraries
 # Google Test and Google Mock are required to run both test suites
 find_package(GTest REQUIRED)
+find_package(GMock REQUIRED)
 
 # Add executables:
 # 1. CalculatorUnitTests: for running unit tests in tests/test_calculator.cpp
