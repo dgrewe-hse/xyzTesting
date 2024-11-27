@@ -1,0 +1,62 @@
+name: GitHub Actions CI
+
+on: [push, pull_request]
+
+jobs:
+  java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+      - name: Build and test
+        run: |
+          cd CalculatorJava
+          mvn clean test
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          cd CalculatorPython
+          pip install -r requirements.txt  # if you have dependencies
+      - name: Run tests
+        run: |
+          cd CalculatorPython
+          python -m unittest discover
+
+  c:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install CUnit
+        run: sudo apt-get install -y libcunit1-dev
+      - name: Compile and run tests
+        run: |
+          cd CalculatorC
+          gcc -o calculator calculator.c test_calculator.c -lcunit
+          ./calculator
+
+  cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install GoogleTest
+        run: sudo apt-get install -y libgtest-dev
+      - name: Compile and run tests
+        run: |
+          cd CalculatorCpp
+          g++ -o test_calculator calculator.cpp test_calculator.cpp -lgtest -lpthread
+          ./test_calculator
