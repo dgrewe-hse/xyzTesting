@@ -61,8 +61,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake g++ libgtest-dev  # Install CMake, g++, and Google Test
+      - name: Build Google Test
+        run: |
           cd /usr/src/gtest
           sudo cmake .
+          sudo make
           sudo cp *.a /usr/lib  # Copy the Google Test libraries to /usr/lib
       - name: Create build directory
         run: |
