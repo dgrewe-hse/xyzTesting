@@ -43,11 +43,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Install CUnit
         run: sudo apt-get install -y libcunit1-dev
-      - name: Compile and run tests
+      - name: Build the project
         run: |
           cd CalculatorC
-          gcc -o calculator calculator.c test_calculator.c -lcunit
-          ./calculator
+          make  # Use the Makefile to build the project
+      - name: Run tests
+        run: |
+          cd CalculatorC
+          make test  # Use the Makefile to run the tests
 
   cpp:
     runs-on: ubuntu-latest
