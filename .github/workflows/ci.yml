@@ -64,12 +64,13 @@ jobs:
       - name: Build Google Test and Google Mock
         run: |
           # Install Google Test and Google Mock
-          sudo apt-get install -y libgtest-dev
+          sudo apt-get install -y libgtest-dev libgmock-dev
           cd /usr/src/gtest
           sudo mkdir build && cd build
           sudo cmake ..
           sudo make
-          sudo make install   # install the libraries
+          sudo cp lib/libgtest*.a /usr/lib  # Copy the Google Test libraries to /usr/lib
+          sudo cp lib/libgmock*.a /usr/lib  # Copy the Google Mock libraries to /usr/lib
       - name: Create build directory
         run: |
           cd CalculatorCpp
