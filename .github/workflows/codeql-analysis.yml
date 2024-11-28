@@ -1,0 +1,37 @@
+name: "CodeQL Analysis"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    paths-ignore:   # ignore files that are not code
+      - '**/*.md'
+      - '**/*.txt'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: [ubuntu-latest]  # use ubuntu-latest for now, can be changed to macos or windows later
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['java', 'python', 'c', 'c++']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up CodeQL
+        uses: github/codeql-action/setup@v2
+        with:
+          languages: ${{ matrix.language }}  # languages we want to analyze
+
+      - name: Initialize CodeQL database
+        uses: github/codeql-action/autobuild@v2
+        with:
+          languages: ${{ matrix.language }}  # languages we want to analyze
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: ['security', 'code-quality', 'correctness']
