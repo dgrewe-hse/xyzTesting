@@ -70,7 +70,7 @@ jobs:
           sudo cmake ..
           sudo make
           sudo cp lib/libgtest*.a /usr/lib  # Copy the Google Test libraries to /usr/lib
-          sudo cp lib/libgmock*.a /usr/lib  # Copy the Google Mock libraries to /usr/lib
+          # sudo cp lib/libgmock*.a /usr/lib  # Copy the Google Mock libraries to /usr/lib
       - name: Create build directory
         run: |
           cd CalculatorCpp
