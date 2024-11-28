@@ -1,4 +1,4 @@
-name: GitHub Actions CI
+name: Build & Test GH Action
 
 on: [push, pull_request]
 
