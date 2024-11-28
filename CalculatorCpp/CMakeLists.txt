@@ -17,13 +17,21 @@
 # Google Test and Google Mock are required to run the tests.
 
 # CMake minimum required version
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 # Project name and language settings
 project(CalculatorCpp)
 
-# Set C++ standard to C++11
-set(CMAKE_CXX_STANDARD 11)
+# Set C++ standard to C++14
+set(CMAKE_CXX_STANDARD 14)
+
+# fetch content for google test and google mock
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/release-1.10.0.zip
+)
+FetchContent_MakeAvailable(googletest)
 
 # Enable testing
 enable_testing()
