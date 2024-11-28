@@ -69,6 +69,8 @@ jobs:
           sudo mkdir build && cd build
           sudo cmake ..
           sudo make
+          # Check if the libraries are built
+          ls lib  # List the contents of the lib directory
           sudo cp lib/libgtest*.a /usr/lib  # Copy the Google Test libraries to /usr/lib
           # sudo cp lib/libgmock*.a /usr/lib  # Copy the Google Mock libraries to /usr/lib
       - name: Create build directory
