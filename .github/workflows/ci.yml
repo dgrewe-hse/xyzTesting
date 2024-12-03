@@ -1,0 +1,42 @@
+# workflow for java calculator project
+name: Java CI Pipline
+
+# define when the workflow should be executed
+on:
+  push:
+    branches:
+      - main
+
+# define the job to execut
+jobs:
+    java:
+        runs-on: ${{ matrix.os }} # Use the operating system defined in the matrix
+        strategy:
+            matrix: # Define a matrix for running jobs on different architectures
+                os: [ubuntu-latest, macos-latest] # Specify the OS to use
+                arch: [x86, arm64] # Specify the architectures to test (x86 and ARM)
+        steps:
+            # install java on container os
+            - name: Install Java
+              uses: actions/setup-java@v4
+              with:
+                distribution: 'temurin'
+                java-version: '17'
+                cache: 'maven'
+            - name: Checkout code
+              uses: actions/checkout@v4
+            # build the project
+            - name: Build with Maven
+              run: |
+                cd CalculatorJava
+                mvn clean install
+            # run unit tests
+            - name: Run Unit tests
+              run: |
+                cd CalculatorJava
+                mvn test
+            # run integration tests
+            - name: Run Integration tests
+              run: |
+                cd CalculatorJava
+                mvn verify
