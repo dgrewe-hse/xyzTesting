@@ -16,15 +16,15 @@ jobs:
                 os: [ubuntu-latest, macos-latest] # Specify the OS to use
                 arch: [x86, arm64] # Specify the architectures to test (x86 and ARM)
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
             # install java on container os
             - name: Install Java
-              uses: actions/setup-java@v4
+              uses: actions/setup-java@v2
               with:
                 distribution: 'temurin'
                 java-version: '17'
                 cache: 'maven'
-            - name: Checkout code
-              uses: actions/checkout@v4
             # build the project
             - name: Build with Maven
               run: |
