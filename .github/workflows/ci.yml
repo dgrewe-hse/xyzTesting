@@ -40,3 +40,26 @@ jobs:
               run: |
                 cd CalculatorJava
                 mvn verify
+
+    python:
+        runs-on: ${{ matrix.os }} # Use the operating system defined in the matrix
+        strategy:
+            matrix: # Define a matrix for running jobs on different architectures
+                os: [ubuntu-latest, macos-latest] # Specify the OS to use
+                arch: [x86, arm64] # Specify the architectures to test (x86 and ARM)
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Install Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.12'
+            - name: Install dependencies
+              run: |
+                cd CalculatorPython
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+            - name: Run Unit tests
+              run: |
+                cd CalculatorPython
+                python -m pytest
