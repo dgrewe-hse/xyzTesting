@@ -49,6 +49,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Enable running JUnit 4 tests (e.g., Cucumber @RunWith) on JUnit Platform -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Mockito for testing -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -61,13 +69,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.11.0</version>
+            <version>7.29.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.11.0</version>
+            <version>7.29.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -82,24 +90,6 @@
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-            <!-- Failsafe plugin for integration tests, including Cucumber -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <includes>
                         <include>**/*CucumberIT.java</include>
                     </includes>
                 </configuration>
@@ -108,9 +98,15 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.8</version>
+                <version>0.8.12</version>
                 <configuration>
                     <excludes>
+                        <!-- Exclude JDK and javax classes to avoid Java 21 instrumentation issues -->
+                        <exclude>java/**</exclude>
+                        <exclude>javax/**</exclude>
+                        <exclude>jdk/**</exclude>
+                        <exclude>sun/**</exclude>
+                        <!-- keep legacy exclusion -->
                         <exclude>sun/util/resources/**</exclude>
                     </excludes>
                 </configuration>
