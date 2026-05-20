@@ -1,0 +1,91 @@
+{
+    "name": "Multi-Language Dev Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "containerUser": "vscode",
+    "containerEnv": {
+        "HOME": "/home/vscode"
+    },
+    "remoteEnv": {
+        "HOME": "/home/vscode"
+    },
+    "runArgs": [
+        "--userns=keep-id"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vmware.vscode-spring-boot",
+                "redhat.vscode-xml",
+                "ms-azuretools.vscode-docker",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "bradlc.vscode-tailwindcss",
+                "ms-vscode.vscode-typescript-next",
+                "streetsidesoftware.code-spell-checker",
+                "eamodio.gitlens",
+                "github.vscode-github-actions",
+                "ms-vsliveshare.vsliveshare",
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.black-formatter",
+                "ms-python.mypy-type-checker",
+                "ms-python.pylint"
+            ],
+            "settings": {
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.compile.nullAnalysis.mode": "automatic",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": true
+                },
+                "typescript.tsdk": "node_modules/typescript/lib",
+                "tailwindCSS.includeLanguages": {
+                    "typescript": "javascript",
+                    "typescriptreact": "javascript"
+                },
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "[java]": {
+                    "editor.defaultFormatter": "redhat.java"
+                },
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter",
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    }
+                },
+                "[rust]": {
+                    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+                },
+                "rust-analyzer.checkOnSave.command": "clippy",
+                "rust-analyzer.assist.importGranularity": "module",
+                "rust-analyzer.assist.importPrefix": "self",
+                "files.watcherExclude": {
+                    "**/target/**": true
+                }
+            }
+        }
+    },
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "username": "vscode",
+            "userUid": "automatic",
+            "userGid": "automatic"
+        },
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "latest",
+            "profile": "minimal",
+            "components": "rust-analyzer,rust-src,rustfmt,clippy"
+        }
+    }
+}
