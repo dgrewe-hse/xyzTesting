@@ -34,6 +34,7 @@ The following table provides an overview of the implementations in each language
 | Python    | `/CalculatorPython/` | Unit tests (excl. Mock Tests) | [unittest](https://docs.python.org/3/library/unittest.html)                  |
 | C         | `/CalculatorC/`      | Unit tests (incl. Mock Tests) | [CUnit](http://cunit.sourceforge.net/)                                       |
 | C++       | `/CalculatorCpp/`    | Unit tests (incl. Mock Tests) | [GoogleTest](https://google.github.io/googletest/)                           |
+| Rust      | `/CalculatorRust/`   | Unit tests                    | Built-in Rust test framework ([`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html)) |
 
 ## Abstract: Calculator with Logger - Highlighting the Use Case
 
@@ -78,6 +79,24 @@ The C++ implementation is located in the `/CalculatorCpp/` directory. It uses **
 
 - **Source Files**: `calculator.cpp`, `calculator.h`, `test_calculator.cpp`
 - **Unit Tests**: Implemented using [GoogleTest](https://google.github.io/googletest/).
+
+### Rust (`cargo test`)
+
+The Rust implementation is located in the `/CalculatorRust/` directory. It exposes four arithmetic functions (`add`, `subtract`, `multiply`, `divide`) that operate on slices of `f64` values (`&[f64]`). Unlike the Java, Python, C, and C++ variants, this version does not include a logging abstraction—it focuses on core arithmetic and unit testing with Rust’s built-in test harness.
+
+- **Source Files**: `src/lib.rs` (implementation and tests in one crate)
+- **Build & dependency management**: [Cargo](https://doc.rust-lang.org/cargo/) (`Cargo.toml`, `Cargo.lock`)
+- **Unit Tests**: Inline `#[test]` modules in `lib.rs`, run with `cargo test` from `/CalculatorRust/`
+- **Edge cases**: Empty slices, single values, mixed signs; division by zero triggers a panic (tested with `#[should_panic]`)
+
+**Prerequisites:** Rust and Cargo (see the [Rust getting started guide](https://www.rust-lang.org/learn/get-started)). The repository dev container installs a current Rust toolchain automatically.
+
+```sh
+cd CalculatorRust
+cargo test
+```
+
+Further reading: [Rust Book — Testing](https://doc.rust-lang.org/book/ch11-00-testing.html). See also [`CalculatorRust/README.md`](./CalculatorRust/README.md).
 
 # Contact
 

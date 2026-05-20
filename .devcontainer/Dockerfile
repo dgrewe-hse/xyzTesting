@@ -10,7 +10,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     python3 \
     python3-pip \
     python3-venv \
-    openjdk-11-jdk \
+    openjdk-17-jdk \
     maven \
     sudo \
     && rm -rf /var/lib/apt/lists/*
