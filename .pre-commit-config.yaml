@@ -1,23 +1,90 @@
-repos:
+# Multi-language pre-commit for xyzTesting
+# Install: pip install pre-commit && pre-commit install
+# Run all:  pre-commit run --all-files
+# Run one: pre-commit run black --all-files
 
+default_language_version:
+  python: python3
+
+exclude: |
+  (?x)^(
+    .*/target/|
+    .*/build/|
+    .*/venv/|
+    .*/\.venv/|
+    .*/__pycache__/|
+    .*/\.pytest_cache/|
+    .*/\.mypy_cache/|
+    .*\.lock$
+  )
+
+repos:
+  # --- Repository-wide ---
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0  # Use the latest version
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: [--unsafe] # GitHub Actions workflow keys
+      - id: check-json
       - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: mixed-line-ending
+        args: [--fix=lf]
 
-  - repo: 'https://github.com/crate-ci/typos'
-    rev: v1.8.1
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.28.4
     hooks:
       - id: typos
-        args: ['--config', './config/local/typos.toml', './content/']
-        files: ^content|i18n
+        # Spell-check docs and source; skip generated/build dirs via top-level exclude
 
-  # Python hooks
+  # --- Python (CalculatorPython/) ---
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
       - id: black
+        files: ^CalculatorPython/
         language_version: python3
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        files: ^CalculatorPython/
+        args: [--max-line-length=88, --extend-ignore=E203]
+
+  # --- Java (CalculatorJava/) ---
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.14.0
+    hooks:
+      - id: pretty-format-java
+        files: ^CalculatorJava/.*\.java$
+
+  # --- C / C++ (CalculatorC/, CalculatorCpp/) ---
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v19.1.0
+    hooks:
+      - id: clang-format
+        files: ^Calculator(C|Cpp)/
+        types_or: [c, c++, c-header, c++-header]
+        args: [--style=file, --fallback-style=LLVM]
+
+  # --- Rust (CalculatorRust/) ---
+  - repo: local
+    hooks:
+      - id: rustfmt
+        name: rustfmt (check)
+        entry: bash -c 'cd CalculatorRust && cargo fmt -- --check'
+        language: system
+        files: ^CalculatorRust/.*\.rs$
+        pass_filenames: false
+
+      - id: clippy
+        name: clippy (CalculatorRust)
+        entry: bash -c 'cd CalculatorRust && cargo clippy -- -D warnings'
+        language: system
+        files: ^CalculatorRust/
+        pass_filenames: false
