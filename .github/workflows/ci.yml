@@ -57,3 +57,7 @@ jobs:
       - name: Run unit tests
         working-directory: CalculatorPython
         run: python -m pytest
+
+      - name: Run BDD scenarios
+        working-directory: CalculatorPython
+        run: python -m behave
