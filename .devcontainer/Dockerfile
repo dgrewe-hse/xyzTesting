@@ -4,6 +4,8 @@ FROM debian:bookworm-slim
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     build-essential \
+    cmake \
+    libcunit1-dev \
     curl \
     git \
     wget \
