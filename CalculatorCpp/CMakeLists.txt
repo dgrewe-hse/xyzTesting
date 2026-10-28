@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD 14)
 include(FetchContent)
 FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/release-1.10.0.zip
+    URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.zip
 )
 FetchContent_MakeAvailable(googletest)
 
@@ -39,10 +39,7 @@ enable_testing()
 # Include directories for the project
 include_directories(include)
 
-# Find and link Google Test (GTest) libraries
-# Google Test and Google Mock are required to run both test suites
-find_package(GTest REQUIRED)
-find_package(GMock REQUIRED)
+# Google Test and Google Mock come from the FetchContent dependency above
 
 # Add executables:
 # 1. CalculatorUnitTests: for running unit tests in tests/test_calculator.cpp
@@ -58,12 +55,8 @@ add_executable(CalculatorMockTests
 )
 
 # Link Google Test and Google Mock
-target_link_libraries(CalculatorUnitTests GTest::GTest GTest::Main)
-target_link_libraries(CalculatorMockTests GTest::GTest GTest::Main GTest::gmock GTest::gmock_main)
-
-# Add include directories for Google Test and Google Mock
-target_include_directories(CalculatorUnitTests PRIVATE ${GTEST_INCLUDE_DIRS})
-target_include_directories(CalculatorMockTests PRIVATE ${GTEST_INCLUDE_DIRS})
+target_link_libraries(CalculatorUnitTests GTest::gtest GTest::gtest_main)
+target_link_libraries(CalculatorMockTests GTest::gtest GTest::gmock GTest::gmock_main)
 
 # Add tests to CTest
 add_test(NAME CalculatorUnitTests COMMAND CalculatorUnitTests)
