@@ -1,9 +1,11 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 # Install essential packages
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     build-essential \
+    cmake \
+    libcunit1-dev \
     curl \
     git \
     wget \
@@ -16,7 +18,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python packages
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --break-system-packages \
     pylint \
     black \
     pytest \
