@@ -22,26 +22,16 @@ setup(
     author_email="dennis.grewe@hs-esslingen.de",
     packages=find_packages(),  # Automatically finds all packages (e.g., calculator.py)
     # Include the dependencies required for your project
-    python_requires=">=3.6",  # Specify your minimum Python version
-    install_requires=[
-        "pytest==8.3.3",  # Updated pytest version
-        "pydantic==1.8.2",  # Added pydantic
-        "pytest-cov==5.0.0",  # Added pytest-cov
-        "python-dotenv==0.19.0",  # Added python-dotenv
-        "flake8>=6.0.0",  # Updated flake8 version
-        "behave==1.2.6",  # Added behave
-    ],
-    # For running tests using pytest, nose2, and additional nose plugins
-    test_suite="tests",
-    tests_require=["pytest"],
-    setup_requires=[
-        "pytest-runner"
-    ],  # pytest-runner will allow you to run tests using `python setup.py test`
+    python_requires=">=3.9",  # Specify your minimum Python version
+    # Runtime dependencies: none (test tooling lives in requirements.txt)
+    install_requires=[],
     extras_require={
         "dev": [
-            "pytest",
-            "flake8",
-        ],  # This will ensure pytest, flake8 is installed for development or testing
+            "pytest>=9.0,<10",
+            "pytest-cov>=7.0,<8",
+            "flake8>=7.0,<8",
+            "behave>=1.3,<2",
+        ],  # Install with: pip install -e ".[dev]"
     },
     # Optional: Include additional metadata
     classifiers=[

@@ -39,6 +39,12 @@ You can  run the test using the [pytest](https://docs.pytest.org/en/stable/) fra
 $ pytest # in the root directory of the project
 ```
 
+The Gherkin/BDD scenarios in `features/` run with [behave](https://behave.readthedocs.io/):
+
+```bash
+$ behave # in the root directory of the project
+```
+
 ## Directory Structure
 
     CalculatorProject/

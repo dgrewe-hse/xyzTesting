@@ -10,3 +10,5 @@
 # details (a copy is included in the LICENSE file that
 # accompanied this code).
 from .calculator import Calculator  # Exposing the Calculator class
+
+__all__ = ["Calculator"]
