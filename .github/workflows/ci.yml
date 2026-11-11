@@ -1,65 +1,59 @@
-# workflow for java calculator project
-name: Java CI Pipline
+# Workflow for calculator projects (Java and Python)
+name: Java CI Pipeline
 
-# define when the workflow should be executed
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
-# define the job to execut
 jobs:
-    java:
-        runs-on: ${{ matrix.os }} # Use the operating system defined in the matrix
-        strategy:
-            matrix: # Define a matrix for running jobs on different architectures
-                os: [ubuntu-latest, macos-latest] # Specify the OS to use
-                arch: [x86, arm64] # Specify the architectures to test (x86 and ARM)
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            # install java on container os
-            - name: Install Java
-              uses: actions/setup-java@v2
-              with:
-                distribution: 'temurin'
-                java-version: '17'
-                cache: 'maven'
-            # build the project
-            - name: Build with Maven
-              run: |
-                cd CalculatorJava
-                mvn clean install
-            # run unit tests
-            - name: Run Unit tests
-              run: |
-                cd CalculatorJava
-                mvn test
-            # run integration tests
-            - name: Run Integration tests
-              run: |
-                cd CalculatorJava
-                mvn verify
+  java:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    python:
-        runs-on: ${{ matrix.os }} # Use the operating system defined in the matrix
-        strategy:
-            matrix: # Define a matrix for running jobs on different architectures
-                os: [ubuntu-latest, macos-latest] # Specify the OS to use
-                arch: [x86, arm64] # Specify the architectures to test (x86 and ARM)
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Install Python
-              uses: actions/setup-python@v2
-              with:
-                python-version: '3.12'
-            - name: Install dependencies
-              run: |
-                cd CalculatorPython
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
-            - name: Run Unit tests
-              run: |
-                cd CalculatorPython
-                python -m pytest
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Build and test with Maven
+        working-directory: CalculatorJava
+        run: mvn -B clean verify
+
+  python:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: CalculatorPython/requirements.txt
+
+      - name: Install dependencies
+        working-directory: CalculatorPython
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        working-directory: CalculatorPython
+        run: python -m pytest

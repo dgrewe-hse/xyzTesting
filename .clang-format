@@ -1,0 +1,4 @@
+# Shared style for CalculatorC and CalculatorCpp (used by pre-commit clang-format)
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 100

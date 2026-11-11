@@ -7,10 +7,13 @@
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
     "containerUser": "vscode",
     "containerEnv": {
-        "HOME": "/home/vscode"
+        "HOME": "/home/vscode",
+        "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-arm64"
     },
     "remoteEnv": {
-        "HOME": "/home/vscode"
+        "HOME": "/home/vscode",
+        "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-arm64",
+        "PATH": "/usr/lib/jvm/java-17-openjdk-arm64/bin:${containerEnv:PATH}"
     },
     "runArgs": [
         "--userns=keep-id"

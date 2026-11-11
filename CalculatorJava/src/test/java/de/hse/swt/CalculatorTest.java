@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test class for Calculator without logging service.
+ * This is a simple test class for the Calculator class.
  */
 public class CalculatorTest {
 
@@ -163,6 +164,7 @@ public class CalculatorTest {
         ArithmeticException exception = assertThrows(ArithmeticException.class, () -> {
             calculator.divide(100.0, 0.0);
         });
-        assertEquals("Cannot divide by zero", exception.getMessage(), "Division by zero should throw ArithmeticException with message 'Cannot divide by zero'");
+        assertEquals("Cannot divide by zero", exception.getMessage(),
+                "Division by zero should throw ArithmeticException with message 'Cannot divide by zero'");
     }
 }
